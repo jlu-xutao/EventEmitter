@@ -1,0 +1,12 @@
+{
+  "name": "eventemitter",
+  "version": "1.0.0",
+  "description": "事件管理器",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "node ./test/index.js"
+  },
+  "author": "xutao",
+  "license": "ISC"
+}
