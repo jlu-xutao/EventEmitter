@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = require("./util");
+import { util } from "./util";
 var EventEmitter = /** @class */ (function () {
     function EventEmitter() {
     }
@@ -10,7 +8,7 @@ var EventEmitter = /** @class */ (function () {
      * @param fn
      */
     EventEmitter.on = function (name, fn, context) {
-        if (!util_1.util.isFunction(fn)) {
+        if (!util.isFunction(fn)) {
             console.warn('EventEmitter on: fn must be Function');
             return;
         }
@@ -22,8 +20,14 @@ var EventEmitter = /** @class */ (function () {
             this._eventContexts[name].push(context);
         }
     };
+    /**
+     * 事件注册，执行单次
+     * @param name
+     * @param fn
+     * @param context
+     */
     EventEmitter.once = function (name, fn, context) {
-        if (!util_1.util.isFunction(fn)) {
+        if (!util.isFunction(fn)) {
             console.warn('EventEmitter on: fn must be Function');
             return;
         }
@@ -42,6 +46,11 @@ var EventEmitter = /** @class */ (function () {
         };
         this.on(name, callback, context);
     };
+    /**
+     * 事件回调销毁
+     * @param name 事件名
+     * @param fn 回调函数
+     */
     EventEmitter.off = function (name, fn) {
         var cbs = this._events[name];
         var contexts = this._eventContexts[name];
@@ -62,6 +71,11 @@ var EventEmitter = /** @class */ (function () {
             }
         }
     };
+    /**
+     * 事件触发
+     * @param name
+     * @param args
+     */
     EventEmitter.emit = function (name) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -88,6 +102,11 @@ var EventEmitter = /** @class */ (function () {
             }
         }
     };
+    /**
+     *
+     * @param name
+     * @param args
+     */
     EventEmitter.sendEvent = function (name) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -122,5 +141,5 @@ var EventEmitter = /** @class */ (function () {
     EventEmitter.maxWaitEventTime = 16;
     return EventEmitter;
 }());
-exports.EventEmitter = EventEmitter;
+export { EventEmitter };
 //# sourceMappingURL=index.js.map
